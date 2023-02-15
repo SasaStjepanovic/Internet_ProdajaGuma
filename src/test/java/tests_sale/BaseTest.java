@@ -1,4 +1,4 @@
-package tests;
+package tests_sale;
 
 import org.openqa.selenium.WebDriver;
 import selenium.DriverManager;

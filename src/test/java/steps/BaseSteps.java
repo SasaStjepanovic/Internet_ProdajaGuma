@@ -2,10 +2,9 @@ package steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.testng.Reporter;
-import tests.BaseTest;
+import tests_sale.BaseTest;
 
 import java.io.IOException;
 import java.util.Map;
