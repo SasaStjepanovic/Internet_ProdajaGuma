@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebf2fed5-cbce-43a3-8a65-588bfa10d11a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/chromedriver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/configuration.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/PropertyManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests_bora/BaseTest_bora.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests_bora/LoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,17 +50,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="C:\Users\Lenovo\Desktop\QAprojekti\Automation_projekti\Internet_ProdajaGuma\src\test\test_data" />
       <recent name="C:\Users\Lenovo\Desktop\QAprojekti\Automation_projekti\Internet_ProdajaGuma\src\test\java\features" />
       <recent name="C:\Users\Lenovo\Desktop\QAprojekti\Automation_projekti\Internet_ProdajaGuma\xmls" />
-      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Internet_ProdajaGuma" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="tests" />
       <recent name="runners" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG./Users/borislavmazinjanin/Desktop/Internet_ProdajaGuma/xmls/gumeTestNG_bora.xml">
     <configuration name="C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Internet_ProdajaGuma" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/gumeTestNGCucumber.xml" />
@@ -66,8 +72,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="/Users/borislavmazinjanin/Desktop/Internet_ProdajaGuma/xmls/gumeTestNG_bora.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Internet_ProdajaGuma" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/gumeTestNG_bora.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG./Users/borislavmazinjanin/Desktop/Internet_ProdajaGuma/xmls/gumeTestNG_bora.xml" />
         <item itemvalue="TestNG.C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber.xml" />
       </list>
     </recent_temporary>

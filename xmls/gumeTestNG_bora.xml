@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Product Test">
+    <test name="Internet prodaja guma tests">
+    <classes>
+        <class name="tests_bora.LoginTest"/>
+
+    </classes>
+</test>
+
+</suite>
