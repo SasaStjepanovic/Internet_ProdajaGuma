@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebf2fed5-cbce-43a3-8a65-588bfa10d11a" name="Changes" comment="" />
+    <list default="true" id="ebf2fed5-cbce-43a3-8a65-588bfa10d11a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +55,17 @@
       <recent name="runners" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG.C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber_sale.xml">
+    <configuration name="C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber_sale.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Internet_ProdajaGuma" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/gumeTestNGCucumber_sale.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Internet_ProdajaGuma" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/gumeTestNGCucumber.xml" />
@@ -64,8 +76,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="/Users/borislavmazinjanin/Desktop/Internet_ProdajaGuma/xmls/gumeTestNG_bora.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Internet_ProdajaGuma" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/gumeTestNG_bora.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber_sale.xml" />
+        <item itemvalue="TestNG./Users/borislavmazinjanin/Desktop/Internet_ProdajaGuma/xmls/gumeTestNG_bora.xml" />
         <item itemvalue="TestNG.C:/Users/Lenovo/Desktop/QAprojekti/Automation_projekti/Internet_ProdajaGuma/xmls/gumeTestNGCucumber.xml" />
       </list>
     </recent_temporary>
