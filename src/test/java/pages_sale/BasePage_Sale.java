@@ -77,12 +77,37 @@ public class BasePage_Sale {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).perform();
             element.click();
-            element.clear();
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            element.sendKeys(Keys.DELETE);
             element.sendKeys(text);
             System.out.println("Entered text: " + text + " :to element: " + log);
         } catch (Exception e) {
             e.printStackTrace();
             element.click();
+            element.sendKeys(text);
+            System.out.println("Entered text: " + text + " :to element: " + log);
+        }
+    }
+
+    public void typeTextJS(WebElement element, String text, String log) throws InterruptedException {
+        explicitWait(element);
+
+        try {
+            new Actions(driver).moveToElement(element).perform();
+            clickElementJS(element, " element is clickd");
+            Thread.sleep(200);
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            Thread.sleep(200);
+            element.sendKeys(Keys.DELETE);
+            element.sendKeys(text);
+            System.out.println("Entered text: " + text + " :to element: " + log);
+        } catch (Exception e) {
+            e.printStackTrace();
+            clickElementJS(element, " element is clickd");
+            Thread.sleep(200);
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            Thread.sleep(200);
+            element.sendKeys(Keys.DELETE);
             element.sendKeys(text);
             System.out.println("Entered text: " + text + " :to element: " + log);
         }
@@ -121,7 +146,7 @@ public class BasePage_Sale {
 
     public void comparePartOfText(WebElement element, String expectedText) throws InterruptedException {
         String actualTitle = element.getText();
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         System.out.println("Actual text is: " + actualTitle);
         Thread.sleep(500);
         Assert.assertTrue(actualTitle.contains(expectedText), actualTitle);
@@ -141,10 +166,11 @@ public class BasePage_Sale {
         Assert.assertEquals(actualValue, expectedValue);
     }
 
-    public void getCssValue(WebElement element, String expectedValue, String cssType) {
+    public boolean getCssValue(WebElement element, String expectedValue, String cssType) {
         String actualValue = element.getCssValue(cssType);
         System.out.println("Actual CSS value of element is : " + actualValue);
         Assert.assertEquals(actualValue, expectedValue);
+        return true;
     }
 
     public void scrollToElement (WebElement element){

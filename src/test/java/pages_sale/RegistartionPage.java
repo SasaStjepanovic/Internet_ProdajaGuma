@@ -1,15 +1,20 @@
 package pages_sale;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
-public class ProfilePage extends BasePage_Sale {
+public class RegistartionPage extends BasePage_Sale {
 
 
-    public ProfilePage(WebDriver driver) {
+    public RegistartionPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -17,147 +22,146 @@ public class ProfilePage extends BasePage_Sale {
     @FindBy(xpath = "//div[@class='logo-box']")
     WebElement baseUrlPageEl;
 
-    @FindBy(css = "#profil-first_name")
-    WebElement imeEl;
+    @FindBy(xpath = "//input[@name='name']")
+    WebElement imePrezimeEl;
 
-    @FindBy(css = "#profil-last_name")
-    WebElement prezimeEl;
-
-    @FindBy(css = "#profil-email")
+    @FindBy(xpath = "//input[@name='email']")
     WebElement emailEl;
 
-    @FindBy(xpath = "//input[@id='company_name']")
-    WebElement nazivFirmeEl;
+    @FindBy(xpath = "//input[@name='password']")
+    WebElement lozinkaEl;
 
-    @FindBy(css = "#company_pib")
-    WebElement pibEl;
+    @FindBy(xpath = "//input[@name='password_confirmation']")
+    WebElement ponoviLozinkuEl;
 
-    @FindBy(css = "#company_maticni_broj")
-    WebElement maticniBrojEl;
+    @FindBy(xpath = "//label[@class='Form-Checkbox']/span")
+    WebElement prihvatamCheckbox;
 
-    @FindBy(css = "#profil-city")
-    WebElement mestoEl;
+    @FindBy(xpath = "//form[@id='form-login']/*[text()='Registruj se']")
+    WebElement registrujSeButton;
 
-    @FindBy(css = "#profil-zip")
-    WebElement pttEl;
+    @FindBy(xpath = "//input[@name='login-submit']")
+    WebElement registrujSeFinalButton;
 
-    @FindBy(css = "#profil-address")
-    WebElement ulicaEl;
+    @FindBy(xpath = "//div[@class='alert alert-danger']/ul//li")
+    WebElement unSuccessfulLoginMessage;
 
-    @FindBy(css = "#profil-address_number")
-    WebElement kucniBrojEl;
+    @FindBy(xpath = "//li[@class='Menu-Item Sub-Items profileMenuDesktop']/a")
+    WebElement successfulLoginMessage;
 
-    @FindBy(css = "#profil-mobile")
-    WebElement telefonEl;
+    @FindBy(xpath = "//a[@title='Auto gume']")
+    WebElement autoGume;
 
-    @FindBy(css = "#submit-profil")
-    WebElement azurirajProfilEl;
+    @FindBy(xpath = "//div[@class='Search-Filter-Category']")
+    WebElement filterPretraga1;
 
-    public void goToBaseUrlPage() {
-        clickElement(baseUrlPageEl, " go to the base url page button is clicked");
+    @FindBy(xpath = "//div[@class='Search-Filter-Category second']")
+    WebElement filterPretraga2;
+
+    @FindBy(xpath = "//div[@class='Search-Filter-Category second']//a")
+    WebElement filterPretraga2Color;
+
+    @FindBy(xpath = "//label[contains(text(),'Dimenzije')]/..//select")
+    WebElement dimenzijeButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Runflat')]/..//select")
+    WebElement runflatButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Opterećenje')]/..//select")
+    WebElement opterecenjeButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Buka')]/..//select")
+    WebElement bukaButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Indeks brzine')]/..//select")
+    WebElement indeksBrzineButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Potrošnja')]/..//select")
+    WebElement potrosnjaButton;
+
+    @FindBy(xpath = "//label[contains(text(),'Prijanjanje')]/..//select")
+    WebElement prijanjanjeButton;
+
+//    @FindBy(xpath = "//div[@class='Search-Filter-Category second Expanded']//div/*[text()='Buka']")
+//    WebElement bukaButton;
+
+//    @FindBy(xpath = "//label[contains(text(),'Proizvođači')]/..//select")
+//    WebElement proizvodjaciButton;
+
+    @FindBy(xpath = "//span[@id='select2-paramef_proizvodjac-8i-container']//span[text()='izaberi...']")
+    WebElement proizvodjaciButton;
+
+    public void clickRegistrujSeButton() {
+        clickElementJS(registrujSeButton, " 'Registruj se button is pressed'");
     }
 
-    public void clickAzurirajProfil() {
-        clickElement(azurirajProfilEl, " azuriraj profil buttn is pressed");
+    public void verifyRistrujSeDisabled() {
+        Assert.assertEquals(false, registrujSeFinalButton.isEnabled());
     }
 
-    public void enterIme(String ime) {
-        typeText(imeEl, ime, " 'ime' is entered");
+    public void verifyRegistrujSeEnabled() {
+        Assert.assertEquals(true, registrujSeFinalButton.isEnabled());
     }
 
-    public void enterPrezme(String prezime) {
-        typeText(prezimeEl, prezime, " 'prezime' is entered");
+    public void enterImePrezime(String imePrezime) {
+        typeText(imePrezimeEl, imePrezime, " ime and prezime is entered ");
     }
 
-    public void enterNazivFirme(String firma) throws InterruptedException {
-        typeTextJS(nazivFirmeEl, firma, " 'firma' is entered");
+    public void enterEmail(String email) {
+        typeText(emailEl, email, " email is entered ");
     }
 
-    public void enterPib(String pib) throws InterruptedException {
-        typeTextJS(pibEl, pib, " 'pib' is entered");
+    public void enterLozinka(String lozinka) {
+        typeText(lozinkaEl, lozinka, " lozinka is entered ");
     }
 
-    public void enterMaticni(String maticni) throws InterruptedException {
-        typeTextJS(maticniBrojEl, maticni, " 'maticni' is entered");
+    public void enterPonoviLozinka(String ponoviLozinka) {
+        typeText(ponoviLozinkuEl, ponoviLozinka, " ponoviLozinka is entered ");
     }
 
-    public void enterMesto(String mesto) throws InterruptedException {
-        typeTextJS(mestoEl, mesto, " 'mesto' is entered");
+    public void checkPrihvatam() {
+        checkCheckbox(prihvatamCheckbox, " Prihvatam checkox is checked");
     }
 
-    public void enterPtt(String ptt) throws InterruptedException {
-        typeTextJS(pttEl, ptt, " 'ptt' is entered");
+    public String randomEmail() {
+        Faker fakerData = new Faker();
+        String randomName = fakerData.name().firstName();
+        int number = fakerData.number().numberBetween(1, 499);
+        String randomEmail = randomName + number + "@yahoo.com";
+        System.out.println("Random email exactly after generate is :" + randomEmail);
+        return randomEmail;
     }
 
-    public void enterUlica(String ulica) throws InterruptedException {
-        typeTextJS(ulicaEl, ulica, " 'ulica' is entered");
+    public String randomName() {
+        Faker fakerData = new Faker();
+        String randomName = fakerData.name().fullName().toUpperCase();
+        System.out.println("Random email exactly after generate is :" + randomName);
+        return randomName;
     }
 
-    public void enterKucniBroj(String kucniBroj) throws InterruptedException {
-        typeTextJS(kucniBrojEl, kucniBroj, " 'kucniBroj' is entered");
-    }
+    public void registration(String randomTypeYesNo, String imePrezime, String email, String lozinka, String confirmlozinka, String randomName, String randomEmail) {
 
-    public void enterTelefon(String tel) throws InterruptedException {
-        typeTextJS(telefonEl, tel, " 'tel' is entered");
-    }
-
-    public void selectHowYouBuy(String customer) {
-        WebElement element = driver.findElement(By.xpath("//div[@class='Profil-Tab-Container']/div/div//label[text()='" + customer + "']"));
-        checkCheckbox(element, " radio button: " + customer + " is selected");
-    }
-
-    public void enterProfilOwnData(String customer, String randomDataYesNo, String ime, String prezime, String email, String firma, String pib, String maticni) throws InterruptedException {
-        selectHowYouBuy(customer);
-        if (randomDataYesNo.equalsIgnoreCase("No")) {
-            if (customer.equalsIgnoreCase("Fizičko lice")) {
-                enterIme(ime);
-                enterPrezme(prezime);
-            } else {
-                enterIme(ime);
-                enterPrezme(prezime);
-                enterNazivFirme(firma);
-                enterPib(pib);
-                enterMaticni(maticni);
-            }
+        if (randomTypeYesNo.equalsIgnoreCase("yes")) {
+            enterImePrezime(randomName);
+            enterEmail(randomEmail);
         } else {
-//// uraditi random samo za ime i prezime
+            enterImePrezime(imePrezime);
+            enterEmail(email);
+        }
+        enterLozinka(lozinka);
+        enterPonoviLozinka(confirmlozinka);
+        checkPrihvatam();
+        clickElement(registrujSeFinalButton, " registruj se button is pressed");
+    }
+
+    public void verifyRegistrationAction(String verificationType, String randName, String expectedMessage2) throws InterruptedException {
+        if (verificationType.equalsIgnoreCase("successful")) {
+            compareText(successfulLoginMessage, randName);
+        } else if (verificationType.equalsIgnoreCase("unsuccessful")) {
+            compareText(unSuccessfulLoginMessage, expectedMessage2);
+        } else {
+            System.out.println("Nothing of expected messages for login verification");
         }
     }
 
-    public void enterDeliveryAddress(String mesto, String ptt, String ulica, String kucniBroj, String tel) throws InterruptedException {
-        enterMesto(mesto);
-        enterPtt(ptt);
-        enterUlica(ulica);
-        enterKucniBroj(kucniBroj);
-        enterTelefon(tel);
-    }
-
-    public void verifyProfileCustomerData(String customer, String randomDataYesNo, String imeText, String prezimeText, String emailText, String attributeType,
-                                          String firmaText, String pibText, String maticniBrojText) {
-        selectHowYouBuy(customer);
-        if (randomDataYesNo.equalsIgnoreCase("No")) {
-            if (customer.equalsIgnoreCase("Fizičko lice")) {
-                getAttribute(imeEl, imeText, attributeType);
-                getAttribute(prezimeEl, prezimeText, attributeType);
-                getAttribute(emailEl, emailText, attributeType);
-            } else {
-                getAttribute(imeEl, imeText, attributeType);
-                getAttribute(prezimeEl, prezimeText, attributeType);
-                getAttribute(emailEl, emailText, attributeType);
-                getAttribute(nazivFirmeEl, firmaText, attributeType);
-                getAttribute(pibEl, pibText, attributeType);
-                getAttribute(maticniBrojEl, maticniBrojText, attributeType);
-            }
-        } else {
-//// samo za radnom ime i prezime
-        }
-    }
-
-    public void verifyProfileDeliveryAdress(String mesto, String ptt, String ulica, String kucniBroj, String tel, String attributeType){
-        getAttribute(mestoEl, mesto, attributeType);
-        getAttribute(pttEl, ptt, attributeType);
-        getAttribute(ulicaEl, ulica, attributeType);
-        getAttribute(kucniBrojEl, kucniBroj, attributeType);
-        getAttribute(telefonEl, tel, attributeType);
-    }
 }
