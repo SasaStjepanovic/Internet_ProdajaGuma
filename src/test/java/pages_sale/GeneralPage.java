@@ -66,11 +66,16 @@ public class GeneralPage extends BasePage_Sale {
         compareText(toastmessage,toast);
     }
 
+    public void verifyNegativeMessageII(String toast) throws InterruptedException {
+        comparePartOfText(toastmessage,toast);
+    }
+
     public void clickPrimeniFiltereButton(){
         clickElementJS(primeniFiltereButton, " priemeni filtere button is pressed");
     }
 
-    public void selectMainMenuTitle(String mainMenuTitle){
+    public void selectMainMenuTitle(String mainMenuTitle) throws InterruptedException {
+        Thread.sleep(1000);
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.xpath("//ul[@class='nav-menu']/li/a[text()='"+ mainMenuTitle +"']"))).build().perform();
         System.out.println("Menu title: " + mainMenuTitle + " is selected");
@@ -98,11 +103,11 @@ public class GeneralPage extends BasePage_Sale {
         }
 
         WebElement element1 = driver.findElement(By.xpath("//a[@title='" + vrstaVozila + "']"));
-        clickElement(element1, " vrsta vozlila: " + vrstaVozila + " is selected");
+        clickElementJS(element1, " vrsta vozlila: " + vrstaVozila + " is selected");
         Thread.sleep(3000);
         WebElement element2 = driver.findElement(By.xpath("//a[@title='" + sezona + "']"));
         clickElementJS(element2, " sezona: " + sezona + " is selected");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
         Select dropdown1 = new Select(dimenzijeButton);
         dropdown1.selectByVisibleText(dimenzije);

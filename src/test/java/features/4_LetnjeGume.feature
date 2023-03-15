@@ -10,7 +10,7 @@ Feature: Letenje gume scenarios include choice different type of summer tires
 
     Examples:
       | TC_ID  |
-      | SI_001 |
+      | SI_002 |
 
   @Gume
   Scenario Outline: Letnje Auto gume
@@ -22,7 +22,7 @@ Feature: Letenje gume scenarios include choice different type of summer tires
 
     Examples:
       | TC_ID  |
-      | SI_002 |
+      | SI_016 |
 
   @Gume
   Scenario Outline: Letnje gume za kombi

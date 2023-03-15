@@ -48,6 +48,7 @@ public class BasePage_Sale {
             System.out.println("Clicked element: " + log);
         } catch (Exception e) {
             e.printStackTrace();
+            scrollToElement(element);
             element.click();
             System.out.println("Clicked element: " + log);
         }
@@ -64,6 +65,7 @@ public class BasePage_Sale {
             System.out.println("Clicked element: " + log);
         } catch (Exception e) {
             e.printStackTrace();
+            scrollToElement(element);
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
             System.out.println("Clicked element: " + log);
@@ -113,6 +115,29 @@ public class BasePage_Sale {
         }
     }
 
+    public void clickXbutton(WebElement element, String log) {
+
+        try {
+            scrollToElement(element);
+            new Actions(driver).moveToElement(element).perform();
+            if (!element.isDisplayed()) {
+                System.out.println("element vise nije prikazan");
+            } else {
+                element.isDisplayed();
+                clickElementJS(element, " x button is pressed");
+            }
+            System.out.println("Checked element" + log);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (!element.isDisplayed()) {
+                System.out.println("element vise nije prikazan");
+            } else {
+                element.isDisplayed();
+                clickElementJS(element, " x button is pressed");
+            }
+            System.out.println("Checked element" + log);
+        }
+    }
     public void checkCheckbox(WebElement element, String log) {
         explicitWait(element);
 
@@ -146,9 +171,9 @@ public class BasePage_Sale {
 
     public void comparePartOfText(WebElement element, String expectedText) throws InterruptedException {
         String actualTitle = element.getText();
-        Thread.sleep(1000);
+        Thread.sleep(300);
         System.out.println("Actual text is: " + actualTitle);
-        Thread.sleep(500);
+        Thread.sleep(300);
         Assert.assertTrue(actualTitle.contains(expectedText), actualTitle);
     }
 
@@ -185,15 +210,15 @@ public class BasePage_Sale {
     public void takeScreenshot(String name, String yesNo) throws IOException {
         if(yesNo.equalsIgnoreCase("YES")) {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            long finish = System.currentTimeMillis();
-            FileUtils.copyFile(file, new File("src/results/screenshots/" + name + "_" +finish+ ".png"));
+            FileUtils.copyFile(file, new File("src/results/screenshots/"+name+".png"));
         }
     }
 
-    public void reportScreenshot(String name, String desc, String yesOrNo) throws IOException {
-        if(yesOrNo.equalsIgnoreCase("Yes")) {
-            takeScreenshot(name, yesOrNo);
-            Path path = Paths.get("src/results/screenshots/"+name+".png");
+    public void reportScreenshotAllure(String name, String desc, String yesOrNo) throws IOException {
+        if(yesOrNo.equalsIgnoreCase("YES")) {
+            long finish = System.currentTimeMillis();
+            takeScreenshot(name+ "_" +finish, yesOrNo);
+            Path path = Paths.get("src/results/screenshots/"+name+"_"+finish+".png");
             InputStream is = Files.newInputStream(path);
             Allure.addAttachment(desc,is);
         }

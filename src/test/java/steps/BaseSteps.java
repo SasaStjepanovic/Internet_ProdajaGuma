@@ -8,10 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Reporter;
-import pages_sale.GeneralPage;
-import pages_sale.LoginLogoutPage;
-import pages_sale.ProfilePage;
-import pages_sale.RegistartionPage;
+import pages_sale.*;
 import tests_sale.BaseTest;
 
 import java.io.IOException;
@@ -25,6 +22,12 @@ public class BaseSteps extends BaseTest {
     String env = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("env");
     String wait = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("wait");
 
+    String ScrShoot1 = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShoot1");
+
+    String ScrShootDesc = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShootDesc");
+
+    String ScrYesOrNo = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrYesOrNo");
+
     RegistartionPage rp = new RegistartionPage(driver);
 
     String randomEmail;
@@ -34,12 +37,14 @@ public class BaseSteps extends BaseTest {
     public void setup() throws Exception {
         init(browser, wait);
         openInternetProdajaGumaApp(env);
+
         randomEmail = rp.randomEmail();
         randomName = rp.randomName();
     }
 
     @After
     public void tearDown() throws IOException {
+        new BasePage_Sale(driver).reportScreenshotAllure(ScrShoot1, ScrShootDesc, ScrYesOrNo);
         quit();
     }
 
@@ -158,7 +163,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("user clicks main menu title")
-    public void userClicksMainMenuTitle() {
+    public void userClicksMainMenuTitle() throws InterruptedException {
         new GeneralPage(driver).selectMainMenuTitle(data.get("menuTitle"));
     }
 
@@ -201,5 +206,46 @@ public class BaseSteps extends BaseTest {
     @Then("user should verify negative toast message")
     public void userShouldVerifyNegativeToastMessage() {
         new GeneralPage(driver).verifyNegativeMessage(data.get("toastMessage"));
+    }
+
+    @And("user adds tires in the shopping basket")
+    public void userAddsTiresInTheShoppingBasket() {
+        new ShopingItemlPage(driver).addItemShoppingBasket();
+    }
+
+    @And("user clicks dodaj button")
+    public void userClicksDodajButton() {
+        new ShopingItemlPage(driver).clickDodajButton();
+    }
+
+    @And("user clicks back button")
+    public void userClicksBackButton() {
+        new ShopingItemlPage(driver).goBack();
+    }
+
+    @Then("user should verify negative toast message II")
+    public void userShouldVerifyNegativeToastMessageII() throws InterruptedException {
+        new GeneralPage(driver).verifyNegativeMessageII(data.get("toastMessage"));
+    }
+
+    @And("user adds more items in the shopping basket")
+    public void userAddsMoreItemsInTheShoppingBasket() {
+        new ShopingItemlPage(driver).addMoreItemsInTheBasket(data.get("numItems"));
+
+    }
+
+    @Then("user should be verify number of items in the basket")
+    public void userShouldBeVerifyNumberOfItemsInTheBasket() throws InterruptedException {
+        new ShopingItemlPage(driver).verifyNumberOfItemsInTheBasket(data.get("numItems"));
+    }
+
+    @Then("user delete all items from the basket")
+    public void userDeleteAllItemsFromTheBasket() throws InterruptedException {
+        new ShopingItemlPage(driver).deleteAllCheckLists();
+    }
+
+    @And("user clicks korpa button")
+    public void userClicksKorpaButton() {
+        new ShopingItemlPage(driver).enterKorpa();
     }
 }

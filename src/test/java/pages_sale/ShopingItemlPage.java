@@ -1,6 +1,5 @@
 package pages_sale;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,152 +11,108 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class GeneralPage extends BasePage_Sale {
+public class ShopingItemlPage extends BasePage_Sale {
 
 
-    public GeneralPage(WebDriver driver) {
+    public ShopingItemlPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
 
-    @FindBy(xpath = "//div[@class='toast-message']")
-    WebElement toastmessage;
-    @FindBy(xpath = "//span[@id='result_counter']")
-    WebElement primeniFiltereButton;
+    @FindBy(xpath = "//div[@class='Product-Items Results']/article[1]//div[@class='add-to-cart']/a[@class='Product-Item-Qty-Change  Plus ']")
+    WebElement addItem;
 
-    @FindBy(xpath = "//a[@title='Auto gume']")
-    WebElement autoGume;
+    @FindBy(xpath = "//div[@class='Product-Items Results']/article[1]//div[@class='add-to-cart']/a[@class='Product-Item-Qty-Change  Minus ']")
+    WebElement removeItem;
 
-    @FindBy(xpath = "//div[@class='Search-Filter-Category']")
-    WebElement filterPretraga1;
+    @FindBy(xpath = "//div[@class='Product-Items Results']/article[1]//label")
+    WebElement availableNumberOfTires;
 
-    @FindBy(xpath = "//div[@class='Search-Filter-Category second']")
-    WebElement filterPretraga2;
+    @FindBy(xpath = "//div[@class='Product-Items Results']/article[1]//div[@class='add-to-cart']/input[@value='Dodaj']")
+    WebElement dodajButton;
 
-    @FindBy(xpath = "//div[@class='Search-Filter-Category second']//a")
-    WebElement filterPretraga2Color;
+    @FindBy(xpath = "//span[@id='Cart-Items']")
+    WebElement numItemsInTheBasket;
 
-    @FindBy(xpath = "//label[contains(text(),'Dimenzije')]/..//select")
-    WebElement dimenzijeButton;
+    @FindBy(xpath = "//div[@id='cart_container']")
+    WebElement emptyBasket;
+    @FindBy(xpath = "//div[@class='header-basket']//a/span[2]")
+    WebElement korpaButton;
 
-    @FindBy(xpath = "//label[contains(text(),'Runflat')]/..//select")
-    WebElement runflatButton;
 
-    @FindBy(xpath = "//label[contains(text(),'Opterećenje')]/..//select")
-    WebElement opterecenjeButton;
-
-    @FindBy(xpath = "//label[contains(text(),'Buka')]/..//select")
-    WebElement bukaButton;
-
-    @FindBy(xpath = "//label[contains(text(),'Indeks brzine')]/..//select")
-    WebElement indeksBrzineButton;
-
-    @FindBy(xpath = "//label[contains(text(),'Potrošnja')]/..//select")
-    WebElement potrosnjaButton;
-
-    @FindBy(xpath = "//label[contains(text(),'Prijanjanje')]/..//select")
-    WebElement prijanjanjeButton;
-
-    @FindBy(xpath = "//div[@class='Search-Page-Section-1']//h1")
-    WebElement titleOfChosenElement;
-
-    public void verifyNegativeMessage(String toast){
-        compareText(toastmessage,toast);
+    public void verifyNumberOfItemsInTheBasket(String numItems) throws InterruptedException {
+        compareText(numItemsInTheBasket, numItems);
     }
 
-    public void clickPrimeniFiltereButton(){
-        clickElementJS(primeniFiltereButton, " priemeni filtere button is pressed");
-    }
-
-    public void selectMainMenuTitle(String mainMenuTitle){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(By.xpath("//ul[@class='nav-menu']/li/a[text()='"+ mainMenuTitle +"']"))).build().perform();
-        System.out.println("Menu title: " + mainMenuTitle + " is selected");
-    }
-
-    public void clickMainMenuSubItem(String mainMenuSubTitle){
-        WebElement element = driver.findElement(By.xpath(" //h3[@class='sub-menu-title']/a[text()='"+mainMenuSubTitle+"']"));
-        clickElement(element, "Element" + mainMenuSubTitle + " is pressed");
-    }
-    public void clickMainMenuSubSubItem(String mainMenuSubSubTitle){
-        WebElement element = driver.findElement(By.xpath(" //div[@class='nav-dropdown']//ul/li/a[contains(text(),'" + mainMenuSubSubTitle + "')]"));
-        clickElement(element, "Element" + mainMenuSubSubTitle + " is pressed");
-    }
-
-    public void verifyChosenTitleOfEelement(String expectedTitle){
-        compareText(titleOfChosenElement, expectedTitle);
-    }
-
-    public void applyFilterPretragaGuma(String vrstaVozila, String sezona, String dimenzije, String proizvodjac) throws InterruptedException {
-        boolean b = autoGume.isDisplayed();
-        if (b) {
-            System.out.println("filter 'Pretraga guma' is already expanded");
+    public int availableNumberofTires() {
+        String actualValue1 = availableNumberOfTires.getText();
+        System.out.println("Actual available number of elements : " + actualValue1);
+        if (actualValue1.equalsIgnoreCase("10+")) {
+            int actualValue2 = Integer.parseInt("12");
+            return actualValue2;
         } else {
-            clickElement(filterPretraga1, " filter 'Pretraga guma' is pressed");
+            int actualValue3 = Integer.parseInt(actualValue1);
+            return actualValue3;
         }
-
-        WebElement element1 = driver.findElement(By.xpath("//a[@title='" + vrstaVozila + "']"));
-        clickElement(element1, " vrsta vozlila: " + vrstaVozila + " is selected");
-        Thread.sleep(3000);
-        WebElement element2 = driver.findElement(By.xpath("//a[@title='" + sezona + "']"));
-        clickElementJS(element2, " sezona: " + sezona + " is selected");
-        Thread.sleep(3000);
-
-        Select dropdown1 = new Select(dimenzijeButton);
-        dropdown1.selectByVisibleText(dimenzije);
-        System.out.println("Dimenzija: " + dimenzije + " is selected");
     }
 
-    public void applyFilterDetaljnaPretraga(String runflat, String opterecenje, String buka, String indeksBrzine,
-                                            String potrosnja, String prijanjanje) {
-        try {
-            boolean b = filterPretraga2.isDisplayed();
-            if (b) {
-                clickElementJS(filterPretraga2Color, " filter 'Detaljna pretraga' is pressed");
-            } else {
-                System.out.println("filter 'Detaljna pretraga' is already expanded");
+    public void addItemShoppingBasket() {
+        if (availableNumberofTires() == 1) {
+            System.out.println("One item is minimum in the shopping basket");
+        }
+        else if (availableNumberofTires() <= 5) {
+            System.out.println("One item is always in the shopping basket");
+            clickElementJS(addItem, "First item: is added in the basket");
+            clickElementJS(addItem, "Second item: is added in the basket");
+        }
+        else {
+                for (int i = 1; i < availableNumberofTires(); i++) {
+                    clickElementJS(addItem, "item: " + i + " is added in the basket");
+//                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("filter 'Detaljna pretraga' is already expanded");
         }
-
-        Select dropdown1 = new Select(runflatButton);
-        dropdown1.selectByVisibleText(runflat);
-        System.out.println("Runlfat is choosed: ");
-
-        Select dropdown2 = new Select(opterecenjeButton);
-        dropdown2.selectByVisibleText(opterecenje);
-        System.out.println("Opterecenje is choosed: ");
-
-        Select dropdown3 = new Select(bukaButton);
-        dropdown3.selectByVisibleText(buka);
-        System.out.println("Buka is choosed: ");
-
-        Select dropdown4 = new Select(indeksBrzineButton);
-        dropdown4.selectByVisibleText(indeksBrzine);
-        System.out.println("Indeks brzine is choosed: ");
-
-        Select dropdown5 = new Select(potrosnjaButton);
-        dropdown5.selectByVisibleText(potrosnja);
-        System.out.println("Potrosnja is choosed: ");
-
-        Select dropdown6 = new Select(prijanjanjeButton);
-        dropdown6.selectByVisibleText(prijanjanje);
-        System.out.println("Prijanjanje is choosed: ");
     }
 
-    public void checkFilteredItems(String[] menuItems) throws InterruptedException {
-        List<WebElement> menu = driver.findElements(By.xpath("//div[@id='Searach-Terms']/div"));
-        for (int i = 0; i < menu.size(); i++) {
-            Thread.sleep(100);
-            String item = menu.get(i).getText();
-            System.out.println("Actual  filtered element" + i + " is: " + item);
-            Thread.sleep(100);
-            Assert.assertEquals(item, menuItems[i], "Menu item not displayed");
-            System.out.println("Actual  filtered element" + i + " is: " + item);
-            Assert.assertTrue(menu.get(i).isDisplayed(), menuItems[i]);
+    public void addMoreItemsInTheBasket(String numItems) {
+        for (int i = 1; i <= Integer.parseInt(numItems); i++) {
+            WebElement element1 = driver.findElement(By.xpath("//div[@class='Product-Items Results']/article[" + i + "]//div[@class='add-to-cart']/input[@value='Dodaj']"));
+            System.out.println(element1);
+            clickElementJS(element1, "item: " + i + " is added in the basket");
+            goBack();
+        }
+    }
+
+    public void clickDodajButton() {
+        clickElement(dodajButton, " dodaj button is pressed");
+    }
+
+    public void goBack() {
+        driver.navigate().back();
+    }
+
+    public void enterKorpa(){
+        clickElementJS(korpaButton, " kopra button is pressed");
+    }
+
+    public void deleteAllCheckLists() throws InterruptedException {
+       enterKorpa();
+        List<WebElement> listOfCheckList = driver.findElements(By.xpath("//div[@class='Cart-Box']/../div"));
+        if (emptyBasket.getText().equals("Korpa je prazna ")) {
+            System.out.println("list of items are empty !!!");
+        } else {
+            for (int i = 0; i <= listOfCheckList.size(); i++) {
+                try {
+                    WebElement element = driver.findElement(By.xpath(" //div[@class='Cart-Box']/../div[1]/div[1]/a"));
+                    clickXbutton(element, " x button is pressed: " + i + " time");
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("list is empty, there are no elements");
+                }
+            }
+
         }
     }
 }
+

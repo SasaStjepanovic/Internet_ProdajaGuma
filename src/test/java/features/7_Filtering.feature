@@ -13,7 +13,7 @@ Feature: Filtering scenarios include choice different type of filter for
 
     Examples:
       | TC_ID  |
-      | SI_001 |
+      | SI_009 |
 
   @Gume
   Scenario Outline: Auto gume letnje
@@ -284,3 +284,4 @@ Feature: Filtering scenarios include choice different type of filter for
     Examples:
       | TC_ID  |
       | SI_019 |
+
