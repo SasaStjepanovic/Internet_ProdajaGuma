@@ -126,7 +126,7 @@ public class RegistartionPage extends BasePage_Sale {
     public String randomEmail() {
         Faker fakerData = new Faker();
         String randomName = fakerData.name().firstName();
-        int number = fakerData.number().numberBetween(1, 499);
+        int number = fakerData.number().numberBetween(1, 10000);
         String randomEmail = randomName + number + "@yahoo.com";
         System.out.println("Random email exactly after generate is :" + randomEmail);
         return randomEmail;

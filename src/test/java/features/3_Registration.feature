@@ -1,17 +1,17 @@
 Feature:Registration scenarios include
 
-#  @Gume
-#  Scenario Outline: Valid Registration (random name & email)
-#
-#    Given a user reads test data from "prodajaguma" "registration" by id "<TC_ID>"
-#    And users clicks on prijava button
-#    And user clicks on registruj se button
-#    When user enter registration data
-#    Then user should be verified registration action
-#
-#    Examples:
-#      | TC_ID  |
-#      | SI_008 |
+  @Gume
+  Scenario Outline: Valid Registration (random name & email)
+
+    Given a user reads test data from "prodajaguma" "registration" by id "<TC_ID>"
+    And users clicks on prijava button
+    And user clicks on registruj se button
+    When user enter registration data
+    Then user should be verified registration action
+
+    Examples:
+      | TC_ID  |
+      | SI_008 |
 
   @Gume
   Scenario Outline: Invalid Registration (empty name & username)
