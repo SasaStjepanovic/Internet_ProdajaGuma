@@ -26,7 +26,8 @@ public class BaseSteps extends BaseTest {
 
     String ScrShootDesc = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShootDesc");
 
-    String ScrYesOrNo = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrYesOrNo");
+    boolean AllureScrYesOrNo = Boolean.parseBoolean(Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("AllureScrYesOrNo"));
+    boolean ScrYesOrNo = Boolean.parseBoolean(Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrYesOrNo"));
 
     RegistartionPage rp = new RegistartionPage(driver);
 
@@ -45,6 +46,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage_Sale(driver).reportScreenshotAllure(ScrShoot1, ScrShootDesc, ScrYesOrNo);
+        new BasePage_Sale(driver).takeScreenshot(ScrShoot1, true);
         quit();
     }
 
