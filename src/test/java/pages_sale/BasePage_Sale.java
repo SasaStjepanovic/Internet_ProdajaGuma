@@ -33,6 +33,7 @@ public class BasePage_Sale {
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
+
     public void explicitWaitInvisibilityOfElement() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, waitTime);
         webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated((By.xpath("//span[text()='Clear All']"))));
@@ -138,6 +139,7 @@ public class BasePage_Sale {
             System.out.println("Checked element" + log);
         }
     }
+
     public void checkCheckbox(WebElement element, String log) {
         explicitWait(element);
 
@@ -162,6 +164,7 @@ public class BasePage_Sale {
             System.out.println("Checked element" + log);
         }
     }
+
     public void compareText(WebElement element, String expectedText) {
         explicitWait(element);
         String actualText = element.getText();
@@ -198,31 +201,44 @@ public class BasePage_Sale {
         return true;
     }
 
-    public void scrollToElement (WebElement element){
+    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", element);
     }
 
-    public void scroll(String x,String y){
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor)driver;
-        javascriptExecutor.executeScript("window.scrollBy("+x+","+y+")");
+    public void scroll(String x, String y) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("window.scrollBy(" + x + "," + y + ")");
     }
 
-    public void takeScreenshot(String name, String yesNo) throws IOException {
-        if(yesNo.equalsIgnoreCase("YES")) {
+    public void takeScreenshot(String name, boolean yesNo) {
+        try {
+            while (!yesNo) {
+                System.out.println("Take screenshot will not be done");
+                break;
+            }
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(file, new File("src/results/screenshots/"+name+".png"));
+            FileUtils.copyFile(file, new File("src/results/screenshots/" + name + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void reportScreenshotAllure(String name, String desc, String yesOrNo) throws IOException {
-        if(yesOrNo.equalsIgnoreCase("YES")) {
+    public void reportScreenshotAllure(String name, String desc, boolean yesNo) {
+        try {
+            while (!yesNo) {
+                System.out.println("Take screenshot will not be done");
+                break;
+            }
             long finish = System.currentTimeMillis();
-            takeScreenshot(name+ "_" +finish, yesOrNo);
-            Path path = Paths.get("src/results/screenshots/"+name+"_"+finish+".png");
+            takeScreenshot(name + "_" + finish, yesNo);
+            Path path = Paths.get("src/results/screenshots/" + name + "_" + finish + ".png");
             InputStream is = Files.newInputStream(path);
-            Allure.addAttachment(desc,is);
+            Allure.addAttachment(desc, is);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     public String randomEmail() {
         String email;
@@ -239,16 +255,17 @@ public class BasePage_Sale {
         System.out.println(name);
         return name;
     }
+
     public void pause(int sec) throws InterruptedException {
-        Thread.sleep(sec*1000);
+        Thread.sleep(sec * 1000);
     }
 
-    public void verifyButtonInvisibility(){
+    public void verifyButtonInvisibility() {
         explicitWaitInvisibilityOfElement();
         System.out.println("Element");
     }
 
-    public void dropDownList(WebElement element, String dropText){
+    public void dropDownList(WebElement element, String dropText) {
         Select select = new Select(element);
         select.selectByVisibleText(dropText);
         System.out.println("Drop down menu item " + dropText + ", is selected");

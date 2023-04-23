@@ -2,7 +2,7 @@ package selenium;
 
 public class DriverManagerFactory {
 
-    public static DriverManager getDriverManager (String type) throws Exception {
+    public static DriverManager getDriverManager(String type) throws Exception {
 
         DriverManager driverManager;
         switch (type.toUpperCase()){

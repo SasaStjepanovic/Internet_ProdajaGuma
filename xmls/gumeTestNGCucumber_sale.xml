@@ -9,7 +9,8 @@
     <parameter name="ScrShoot1" value="ScrShotBefore"/>
     <parameter name="ScrShoot2" value="ScrShotAfter"/>
     <parameter name="ScrShootDesc" value="ScreenShot will be happen after the web page is opened "/>
-    <parameter name="ScrYesOrNo" value="YES"/>
+    <parameter name="AllureScrYesOrNo" value="True"/>
+    <parameter name="ScrYesOrNo" value="True"/>
 
     <test name="Internet prodaja guma tests_sale">
         <classes>
