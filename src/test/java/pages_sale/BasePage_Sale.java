@@ -34,9 +34,9 @@ public class BasePage_Sale {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void explicitWaitInvisibilityOfElement() {
+    public void explicitWaitInvisibilityOfElement(WebElement element) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, waitTime);
-        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated((By.xpath("//span[text()='Clear All']"))));
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated((By) element));
     }
 
     public void clickElement(WebElement element, String log) {
@@ -92,24 +92,20 @@ public class BasePage_Sale {
         }
     }
 
-    public void typeTextJS(WebElement element, String text, String log) throws InterruptedException {
+    public void typeTextJS(WebElement element, String text, String log) {
         explicitWait(element);
 
         try {
             new Actions(driver).moveToElement(element).perform();
-            clickElementJS(element, " element is clickd");
-            Thread.sleep(200);
+            clickElementJS(element, " element is clicked");
             element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-            Thread.sleep(200);
             element.sendKeys(Keys.DELETE);
             element.sendKeys(text);
             System.out.println("Entered text: " + text + " :to element: " + log);
         } catch (Exception e) {
             e.printStackTrace();
             clickElementJS(element, " element is clickd");
-            Thread.sleep(200);
             element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-            Thread.sleep(200);
             element.sendKeys(Keys.DELETE);
             element.sendKeys(text);
             System.out.println("Entered text: " + text + " :to element: " + log);
@@ -122,7 +118,7 @@ public class BasePage_Sale {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).perform();
             if (!element.isDisplayed()) {
-                System.out.println("element vise nije prikazan");
+                System.out.println("Web element is not displayed any more");
             } else {
                 element.isDisplayed();
                 clickElementJS(element, " x button is pressed");
@@ -131,7 +127,7 @@ public class BasePage_Sale {
         } catch (Exception e) {
             e.printStackTrace();
             if (!element.isDisplayed()) {
-                System.out.println("element vise nije prikazan");
+                System.out.println("Web element is not displayed any more");
             } else {
                 element.isDisplayed();
                 clickElementJS(element, " x button is pressed");
@@ -150,7 +146,7 @@ public class BasePage_Sale {
                 element.click();
             } else {
                 element.isSelected();
-                System.out.println("element je vec kliknut");
+                System.out.println("Web element is already clicked");
             }
             System.out.println("Checked element" + log);
         } catch (Exception e) {
@@ -159,7 +155,7 @@ public class BasePage_Sale {
                 element.click();
             } else {
                 element.isSelected();
-                System.out.println("element je vec kliknut");
+                System.out.println("Web element is already clicked");
             }
             System.out.println("Checked element" + log);
         }
@@ -172,11 +168,9 @@ public class BasePage_Sale {
         System.out.println("Actual text is: " + actualText);
     }
 
-    public void comparePartOfText(WebElement element, String expectedText) throws InterruptedException {
+    public void comparePartOfText(WebElement element, String expectedText) {
         String actualTitle = element.getText();
-        Thread.sleep(300);
         System.out.println("Actual text is: " + actualTitle);
-        Thread.sleep(300);
         Assert.assertTrue(actualTitle.contains(expectedText), actualTitle);
     }
 
@@ -260,8 +254,8 @@ public class BasePage_Sale {
         Thread.sleep(sec * 1000);
     }
 
-    public void verifyButtonInvisibility() {
-        explicitWaitInvisibilityOfElement();
+    public void verifyButtonInvisibility(WebElement element) {
+        explicitWaitInvisibilityOfElement(element);
         System.out.println("Element");
     }
 

@@ -40,7 +40,7 @@ Feature: Filtering scenarios include choice different type of filter for
       | SI_003 |
 
   @Gume
-  Scenario Outline: Buy more items and than verified the basket
+  Scenario Outline: Buy more items and then verified the basket
 
     Given a user reads test data from "prodajaguma" "gume" by id "<TC_ID>"
     And users clicks on prijava button
